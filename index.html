@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SaaS Icon Pack Preview - Envato Assets</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0F172A;
+            --card: #1E293B;
+            --accent: #6366F1;
+            --text: #F8FAFC;
+        }
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Outfit', sans-serif;
+            margin: 0;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        header { text-align: center; margin-bottom: 50px; }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(to right, #6366F1, #8B5CF6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            width: 100%;
+            max-width: 1200px;
+        }
+        .icon-card {
+            background: var(--card);
+            border-radius: 20px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            border: 1px solid transparent;
+            cursor: pointer;
+        }
+        .icon-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.15);
+        }
+        .lottie-container { width: 200px; height: 200px; margin-bottom: 20px; }
+        .icon-name { font-weight: 600; text-transform: capitalize; color: #94A3B8; }
+        .path-label { font-size: 0.75rem; color: #475569; margin-top: 5px; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>SaaS Icon Pack v1.0</h1>
+        <p>8 professionally animated icons &mdash; 60 FPS &bull; 500&times;500 &bull; Seamless Loop</p>
+    </header>
+    <div class="grid" id="icon-grid"></div>
+    <script>
+        const icons = ['checkmark','bell','upload','search','gear','heart','star','lock'];
+        const grid = document.getElementById('icon-grid');
+        icons.forEach(name => {
+            const card = document.createElement('div');
+            card.className = 'icon-card';
+            const container = document.createElement('div');
+            container.className = 'lottie-container';
+            container.id = `lottie-${name}`;
+            const label = document.createElement('div');
+            label.className = 'icon-name';
+            label.innerText = name;
+            const path = document.createElement('div');
+            path.className = 'path-label';
+            path.innerText = `assets/icon-${name}.json`;
+            card.appendChild(container);
+            card.appendChild(label);
+            card.appendChild(path);
+            grid.appendChild(card);
+            lottie.loadAnimation({
+                container: container,
+                renderer: 'svg',
+                loop: true,
+                autoplay: true,
+                path: `assets/icon-${name}.json`
+            });
+        });
+    </script>
+</body>
+</html>
